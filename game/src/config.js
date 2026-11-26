@@ -1,0 +1,108 @@
+/* NIGHT FALCON — Moonlit Sea Intercept. config.js: missions, people, upgrades, weather.
+   Classic script, no imports. All data the game reads lives here. */
+window.NF_CONFIG = {
+  title: 'NIGHT FALCON',
+  subtitle: 'Moonlit Sea Intercept',
+  carrier: 'Kestrel',
+  enemyFleet: 'Crimson Wake',
+  canvasW: 1280,
+  canvasH: 720,
+
+  people: {
+    commander: { name: 'Nadia "Starling" Putri', rank: 'Commander', role: 'Squadron leader',
+      line: 'Night-1, the sea is ours tonight. Fly clean, come home.' },
+    wingman: { name: 'Bimo "Kite" Santoso', rank: 'Lieutenant', role: 'Wingman',
+      line: 'Starling, I see them — bandits on the scope. Let\'s go hunting!' },
+    tower: { name: 'Lestari "Tower" Wulandari', rank: 'Officer', role: 'Carrier control',
+      line: 'Kestrel Tower: vector 090, angels 12. You are cleared for the intercept.' },
+    mechanic: { name: 'Darma "Wrench" Gunawan', rank: 'Chief', role: 'Hangar mechanic',
+      line: 'She\'s fueled and armed, Night-1. Treat her gentle and she\'ll bring you back.' },
+    ghost: { name: 'Ghost', rank: 'Ace', role: 'Hidden enemy ace',
+      line: 'So the little falcon finally flies at night. Come find me in the dark.' }
+  },
+
+  missions: [
+    { id: 1, code: 'DECK LAUNCH', name: 'Deck Launch', time: '21:40',
+      bg: 'carrier-deck', weather: 'clear', fog: 0,
+      brief: 'Catapult launch off the carrier Kestrel. Climb through the moonlit gap between the two islands and form up.',
+      objective: 'Launch, climb to 12,000 ft and fly the gap. 2 bandits guard the gap — splash them.',
+      route: ['Kestrel deck', 'Catapult', 'Island gap', 'Form up'],
+      enemies: 2, kind: 'fighter', fuel: 100, reward: 400,
+      tower: 'Catapult is hot, wind over the deck 28 knots. Good launch, Night-1.' },
+    { id: 2, code: 'MOONLIT INTERCEPT', name: 'Moonlit Intercept', time: '22:35',
+      bg: 'night-sea', weather: 'clear', fog: 0,
+      brief: 'Three Crimson Wake cargo planes are running supplies across the moonlit sea. Stop them before they cross the line.',
+      objective: 'Shoot down all 3 cargo planes before they cross the line. Moon path on the water, ship lights below.',
+      route: ['Kestrel', 'Moon path', 'Intercept line', 'Return'],
+      enemies: 3, kind: 'cargo', fuel: 100, reward: 650,
+      tower: 'Three fat cargo birds on the scope, angels 8. Don\'t let them cross the line.' },
+    { id: 3, code: 'HARBOR LIGHTS', name: 'Harbor Lights', time: '23:20',
+      bg: 'harbor-night', weather: 'searchlights', fog: 0,
+      brief: 'Defend the lit harbor and its escort ships. Searchlight cones sweep the sky and reveal the raiders; missile boats attack from the dark.',
+      objective: 'Destroy 4 raiders and 2 missile boats. Stay in the searchlights — they reveal hidden enemies.',
+      route: ['Harbor', 'Escort ships', 'Searchlight ring', 'Boat line'],
+      enemies: 4, kind: 'fighter', boats: 2, fuel: 100, reward: 800,
+      tower: 'Searchlights are sweeping. If a cone catches a bandit, he is yours.' },
+    { id: 4, code: 'FLARE RUN', name: 'Flare Run', time: '00:15',
+      bg: 'harbor-night', weather: 'flares', fog: 1,
+      brief: 'Night raid on the coastal base. Flares light the target; runway lights mark the strip. Watch your fuel — it matters tonight.',
+      objective: 'Hit the coastal base: 3 fighters and 2 fuel trucks on the strip. Flares light the target.',
+      route: ['Coast', 'Flare drop', 'Base strip', 'Egress'],
+      enemies: 3, kind: 'fighter', boats: 2, fuel: 80, reward: 900,
+      tower: 'Flares away over the base. Fuel is tight tonight, Night-1 — make every pass count.' },
+    { id: 5, code: 'STORM FRONT', name: 'Storm Front', time: '01:50',
+      bg: 'storm-night', weather: 'storm', fog: 1,
+      brief: 'Fly the edge of a night thunderstorm. Rain, lightning flashes, low cloud, tight turns between lightning-lit peaks.',
+      objective: 'Thread the storm gap and splash 4 storm-riders hiding in the cloud. Lightning shows the way.',
+      route: ['Storm edge', 'Rain wall', 'Lightning peaks', 'Clear air'],
+      enemies: 4, kind: 'fighter', fuel: 90, reward: 1000,
+      tower: 'Storm cell is moving fast. Lightning will show you the peaks — and the bandits.' },
+    { id: 6, code: 'GHOST IN THE DARK', name: 'Ghost in the Dark', time: '03:00',
+      bg: 'dawn-haze', weather: 'dawn', fog: 2,
+      brief: 'Final duel against Ghost above a moonlit sea at 03:00. Ghost dodges, drops flares, taunts on the radio. Win this and the war ends.',
+      objective: 'Defeat Ghost, the black unmarked ace. He dodges, drops flares, and never flies straight.',
+      route: ['Moonlit sea', 'Ghost contact', 'The duel', 'Dawn'],
+      enemies: 1, kind: 'ghost', fuel: 110, reward: 1500,
+      tower: 'Contact — one black jet, no markings. That is Ghost. Good hunting, Night-1.' }
+  ],
+
+  upgrades: [
+    { id: 'missiles', name: 'Missile Rack', desc: '+2 missiles per sortie', price: 300, max: 3,
+      effect: 'missiles', amount: 2 },
+    { id: 'flares', name: 'Flare Pack', desc: '+4 flares per sortie', price: 200, max: 3,
+      effect: 'flares', amount: 4 },
+    { id: 'armor', name: 'Armor Plating', desc: '+40 hull', price: 350, max: 3,
+      effect: 'hull', amount: 40 },
+    { id: 'engine', name: 'Afterburner Engine', desc: '+top speed, faster lock', price: 500, max: 3,
+      effect: 'speed', amount: 60 },
+    { id: 'radar', name: 'Long-Range Radar', desc: 'Lock builds faster, shows more', price: 450, max: 3,
+      effect: 'lock', amount: 0.5 },
+    { id: 'tank', name: 'Drop Tank', desc: '+fuel per sortie', price: 250, max: 3,
+      effect: 'fuel', amount: 30 },
+    { id: 'cannon', name: 'Cannon Upgrade', desc: '+gun damage', price: 400, max: 3,
+      effect: 'gun', amount: 8 }
+  ],
+
+  weather: {
+    clear: { rain: 0, lightning: 0, searchlights: 0, label: 'CLEAR NIGHT' },
+    searchlights: { rain: 0, lightning: 0, searchlights: 3, label: 'SEARCHLIGHTS' },
+    flares: { rain: 0, lightning: 0, searchlights: 1, label: 'FLARE LIT' },
+    storm: { rain: 1, lightning: 1, searchlights: 0, label: 'THUNDERSTORM' },
+    dawn: { rain: 0, lightning: 0, searchlights: 0, label: 'DAWN HAZE' }
+  },
+
+  keys: [
+    ['Arrow keys / WASD', 'Steer the jet'],
+    ['Shift', 'Afterburner boost (burns fuel)'],
+    ['Space', 'Fire cannon'],
+    ['F or mouse click', 'Fire missile at full lock'],
+    ['C', 'Drop a flare (lights the area, breaks enemy locks)'],
+    ['V', 'Toggle cockpit / chase camera'],
+    ['P', 'Pause'],
+    ['M', 'Mute sound'],
+    ['Enter', 'Confirm / continue'],
+    ['1-6', 'Select mission on the map'],
+    ['R', 'Restart after results / game over'],
+    ['Esc', 'Back to hangar / title']
+  ]
+};
